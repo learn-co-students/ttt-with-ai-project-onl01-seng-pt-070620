@@ -1,3 +1,17 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+puts 'How many players? (0,1 or 2)'
+response = gets.strip!.to_i
+case response
+when 0
+  # something
+when 1
+  game = Game.new(Player_1 = Players::Human.new("X"), player_2 = Players::Computer.new("O"), board = Board.new)
+
+when 2
+  game = Game.new(Player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
+  game.play
+
+end
