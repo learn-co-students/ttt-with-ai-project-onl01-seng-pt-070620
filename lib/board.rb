@@ -34,7 +34,7 @@ class Board
   end
 
   def taken?(playersMove)
-    @cells[playersMove.to_i] != ' ' # if this cell is not blank it's taken
+    @cells[playersMove.to_i - 1] != ' '
   end
 
   def valid_move?(playersMove)

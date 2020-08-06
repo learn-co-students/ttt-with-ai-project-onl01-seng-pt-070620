@@ -36,7 +36,7 @@ class Game
   end
 
   def winner
-    if combo = won?
+    if (combo = won?)
       @board.cells[combo[0]]
     else
       nil
