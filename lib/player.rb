@@ -5,6 +5,6 @@ class Player
   end
 
   def move
-    Board.update(playersMove,self)
+    #Board.update(playersMove,self)
   end
 end

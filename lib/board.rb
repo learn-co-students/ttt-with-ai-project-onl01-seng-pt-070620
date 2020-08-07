@@ -42,4 +42,12 @@ class Board
     # check if playersMove passed in is between 1-9 and check if array index is empty ' '
   end
 
+  def empty_cells
+    @emptycells = []
+    @cells.each_with_index do |cell, i|
+      @emptycells << i if cell == ' '
+    end
+    @emptycells
+  end
+
 end

@@ -2,9 +2,9 @@ require 'pry'
 class Game
   attr_accessor :board, :player_1, :player_2
   WIN_COMBINATIONS = [
-    [0, 1, 2], [3, 4, 5], [6, 7, 8],
-    [0, 3, 6], [1, 4, 7], [2, 5, 8],
-    [0, 4, 8], [6, 4, 2]
+      [0, 1, 2], [3, 4, 5], [6, 7, 8],
+      [0, 3, 6], [1, 4, 7], [2, 5, 8],
+      [0, 4, 8], [6, 4, 2]
   ].freeze
 
   def initialize(player_1 = Players::Human.new("X"), player_2 = Players::Human.new("O"), board = Board.new)
@@ -33,9 +33,29 @@ class Game
     end
   end
 
+  def eval
+    current = winner
+    if current == 'O'
+      1
+    elsif current == 'X'
+      -1
+    else
+      0
+    end
+  end
+
   def winner
     if (combo = won?)
       @board.cells[combo[0]]
+      case @board.cells[combo[0]]
+      when 'X'
+        winningplayer = 'X' # might be unneeded/redundant
+      when 'O'
+        winningplayer = 'O'
+      else
+        winningplayer = nil
+      end
+      winningplayer
     else
       nil
     end
@@ -44,12 +64,20 @@ class Game
   def turn
     @board.display
     player = current_player
-    current_move = player.move(@board) # checks if move is valid places move then repeats with opposite player
+    current_move = player.move(@board,self) # checks if move is valid places move then repeats with opposite player
     @board.valid_move?(current_move) ? @board.update(current_move, player) : turn
   end
 
   def play
     turn until over?
     puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
+  end
+
+  def again?
+    puts 'Do you want to play again? Y/N'
+    respond = gets.strip.downcase
+    if respond == 'y'
+
+    end
   end
 end
