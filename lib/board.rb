@@ -34,7 +34,7 @@ class Board
   end
 
   def taken?(playersMove)
-    @cells[playersMove.to_i - 1] != ' '
+    position(playersMove) != ' '
   end
 
   def valid_move?(playersMove)
