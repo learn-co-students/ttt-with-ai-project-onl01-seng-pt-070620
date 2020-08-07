@@ -19,6 +19,11 @@ class Game
     # 'O' just went its X's turn does opposite if false
   end
 
+  def opposing_player
+    @board.turn_count.even? ? @player_2 : @player_1 # calls current board instance method turn.count if number is even
+    # 'O' just went its X's turn does opposite if false
+  end
+
   def draw?
     @board.full? && !won?
   end
@@ -34,10 +39,15 @@ class Game
   end
 
   def eval
+    winplayer = Player.all.detect { |player| player.class == Players::Computer } # find computer players token
+    winplayertoken = winplayer.token
+    winplayertoken == 'X' ? loseplayertoken = 'O' : loseplayertoken = 'X'
+    #binding.pry
     current = winner
-    if current == 'O'
+    if current == winplayertoken # idk if this a good solution
       1
-    elsif current == 'X'
+
+    elsif current == loseplayertoken
       -1
     else
       0
@@ -62,22 +72,14 @@ class Game
   end
 
   def turn
-    @board.display
     player = current_player
     current_move = player.move(@board,self) # checks if move is valid places move then repeats with opposite player
     @board.valid_move?(current_move) ? @board.update(current_move, player) : turn
+    @board.display
   end
 
   def play
     turn until over?
-    puts winner ? "Congratulations #{winner}!" : "Cat's Game!"
-  end
-
-  def again?
-    puts 'Do you want to play again? Y/N'
-    respond = gets.strip.downcase
-    if respond == 'y'
-
-    end
+    puts winner ? "Congratulations #{winner}!".red : "Cat's Game!".red
   end
 end

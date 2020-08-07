@@ -10,11 +10,11 @@ class Board
   end
 
   def display
-    puts " #{@cells[0]} | #{@cells[1]} | #{@cells[2]} "
-    puts '-----------'
-    puts " #{@cells[3]} | #{@cells[4]} | #{@cells[5]} "
-    puts '-----------'
-    puts " #{@cells[6]} | #{@cells[7]} | #{@cells[8]} "
+    puts " #{@cells[0]} ".red + "| ".green +  "#{@cells[1]} ".red + "| ".green + "#{@cells[2]} ".red
+    puts '-----------'.green
+    puts " #{@cells[3]} ".red + "| ".green +  "#{@cells[4]} ".red + "| ".green + "#{@cells[5]} ".red
+    puts '-----------'.green
+    puts " #{@cells[6]} ".red + "| ".green +  "#{@cells[7]} ".red + "| ".green + "#{@cells[8]} ".red
   end
 
   def position(userinput)
@@ -43,11 +43,11 @@ class Board
   end
 
   def empty_cells
-    @emptycells = []
+    emptycells = []
     @cells.each_with_index do |cell, i|
-      @emptycells << i if cell == ' '
+      emptycells << i if cell == ' '
     end
-    @emptycells
+    emptycells
   end
 
 end
