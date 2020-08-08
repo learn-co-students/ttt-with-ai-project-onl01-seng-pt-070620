@@ -2,16 +2,25 @@
 
 require_relative '../config/environment'
 
-#PLAYER VS PLAYER
-#game = Game.new
-#puts "#{game.start_PvP}"
+puts "Welcome! What type of game would you like to play?"
+puts "0 ---> Computer vs Computer"
+puts "1 ---> Player vs Computer"
+puts "2 ---> Player vs Player"
 
-#PLAYER VS COMPUTER
-#game = Game.new
-#puts "#{game.start_PvC}"
+user_input = gets.chomp
 
-#COMPUTER VS COMPUTER
-game = Game.new
-puts "#{game.start_CvC}"
+if user_input == "0"
+  game = Game.new
+  puts "#{game.start_CvC}"
+elsif user_input == "1"
+  game = Game.new
+  puts "#{game.start_PvC}"
+elsif user_input == "2"
+  game = Game.new
+  puts "#{game.start_PvP}"
+else
+  puts "You fool, leave this game!"
+end
+
 
 

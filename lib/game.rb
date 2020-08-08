@@ -62,7 +62,7 @@ class Game
       turn
     end
     board.update(user_input, current_player)
-    sleep(3)
+    # sleep(1)
     board.display
   end
   
@@ -83,21 +83,18 @@ class Game
   end
   
   def start_PvP 
-    puts "Welcome! Lets play TicTacToe!"
     game = Game.new()
     game.board.display
     game.play
   end
   
   def start_PvC
-    puts "Welcome! Lets play TicTacToe!"
     game = Game.new(Players::Human.new('X'), Players::Computer.new('O'))
     game.board.display
     game.play
   end
   
   def start_CvC
-    puts "Welcome! Lets play TicTacToe!"
     game = Game.new(Players::Computer.new('X'), Players::Computer.new('O'))
     game.board.display
     game.play
