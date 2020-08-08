@@ -27,7 +27,7 @@ module Players
         # puts "Turn #{turn}, current player #{current_player}, best #{best}"
         # gets
         score = minimax(game, state, turn + 1, current_player == 'X' ? 'O' : 'X') #recursive call
-        state.cells[cell] = ' '
+        state.cells[cell] = ' ' # being x going first works being x not going first works computer o
         score[0] = cell
         if current_player == self.token
           if score[1] > best[1]

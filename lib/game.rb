@@ -81,5 +81,10 @@ class Game
   def play
     turn until over?
     puts winner ? "Congratulations #{winner}!".red : "Cat's Game!".red
+      puts "Would you like to play again? Y/N?".green
+    response = gets.strip.downcase
+    if response == 'y'
+      start
+    end
   end
 end
