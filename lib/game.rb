@@ -55,11 +55,15 @@ class Game
   end
   
   def turn 
+    puts "Make a move player #{current_player.token}."
     user_input = current_player.move(board)
     if !board.valid_move?(user_input)
+      puts "Try again dude!"
       turn
     end
     board.update(user_input, current_player)
+    sleep(3)
+    board.display
   end
   
   def play
@@ -72,10 +76,33 @@ class Game
       end
     end
   end
-  
+
   def cells=(cells)
     Board.cells
     binding.pry
   end
   
+  def start_PvP 
+    puts "Welcome! Lets play TicTacToe!"
+    game = Game.new()
+    game.board.display
+    game.play
+  end
+  
+  def start_PvC
+    puts "Welcome! Lets play TicTacToe!"
+    game = Game.new(Players::Human.new('X'), Players::Computer.new('O'))
+    game.board.display
+    game.play
+  end
+  
+  def start_CvC
+    puts "Welcome! Lets play TicTacToe!"
+    game = Game.new(Players::Computer.new('X'), Players::Computer.new('O'))
+    game.board.display
+    game.play
+  end
 end
+
+  
+

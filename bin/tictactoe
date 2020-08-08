@@ -1,6 +1,17 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
-puts "Welcome!"
-puts "What type of game would you like to play?"
-gets
+
+#PLAYER VS PLAYER
+#game = Game.new
+#puts "#{game.start_PvP}"
+
+#PLAYER VS COMPUTER
+#game = Game.new
+#puts "#{game.start_PvC}"
+
+#COMPUTER VS COMPUTER
+game = Game.new
+puts "#{game.start_CvC}"
+
+
