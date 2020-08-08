@@ -3,3 +3,4 @@
 require_relative '../config/environment'
 puts "Welcome!"
 puts "What type of game would you like to play?"
+gets
