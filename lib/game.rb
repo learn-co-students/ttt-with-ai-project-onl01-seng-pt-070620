@@ -1,4 +1,5 @@
 require 'pry'
+
 class Game
   attr_accessor :board, :player_1, :player_2
   WIN_COMBINATIONS = [
@@ -39,14 +40,17 @@ class Game
   end
 
   def eval
-    winplayer = Player.all.detect { |player| player.class == Players::Computer } # find computer players token
-    winplayertoken = winplayer.token
-    winplayertoken == 'X' ? loseplayertoken = 'O' : loseplayertoken = 'X'
-    #binding.pry
+    if Player.all.all? { |player| player.class == Players::Computer }
+      winplayertoken = current_player.token
+      winplayertoken == 'X' ? loseplayertoken = 'O' : loseplayertoken = 'X'
+    else
+      winplayer = Player.all.detect { |player| player.class == Players::Computer } # find computer players tokenw
+      loseplayertoken = Player.all.detect { |player| player.class == Players::Human }.token
+      winplayertoken = winplayer.token
+    end
     current = winner
-    if current == winplayertoken # idk if this a good solution
+    if current == winplayertoken
       1
-
     elsif current == loseplayertoken
       -1
     else
@@ -54,11 +58,13 @@ class Game
     end
   end
 
+
   def winner
     if (combo = won?)
       @board.cells[combo[0]]
       case @board.cells[combo[0]]
       when 'X'
+
         winningplayer = 'X' # might be unneeded/redundant
       when 'O'
         winningplayer = 'O'
@@ -73,7 +79,7 @@ class Game
 
   def turn
     player = current_player
-    current_move = player.move(@board,self) # checks if move is valid places move then repeats with opposite player
+    current_move = player.move(@board, self) # checks if move is valid places move then repeats with opposite player
     @board.valid_move?(current_move) ? @board.update(current_move, player) : turn
     @board.display
   end
@@ -81,9 +87,10 @@ class Game
   def play
     turn until over?
     puts winner ? "Congratulations #{winner}!".red : "Cat's Game!".red
-      puts "Would you like to play again? Y/N?".green
+    puts "Would you like to play again? Y/N?".green
     response = gets.strip.downcase
     if response == 'y'
+      Player.all.clear
       start
     end
   end

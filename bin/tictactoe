@@ -10,14 +10,14 @@ when 0
   game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
   game.play
 when 1
-  # puts "Do you want to be X or O?".green
-  # token = gets.strip.upcase             broken i and i cant figure out why
-  # comptoken = 'X' if token == 'O'
-  # comptoken = 'O' if token == 'X'
+  puts "Do you want to be X or O?".green
+  choice = gets.chomp.upcase
+  comptoken = 'X' if choice == 'O'
+  comptoken = 'O' if choice == 'X'
   puts "Do you want to go first? Y/N".green
-  order = gets.strip.downcase
-  game = Game.new(Players::Human.new('O'), Players::Computer.new('X'), Board.new) if order == 'y'
-  game = Game.new(Players::Computer.new('X'), Players::Human.new('O'), Board.new) if order == 'n'
+  order = gets.chomp.downcase
+  game = Game.new(Players::Human.new(choice), Players::Computer.new(comptoken), Board.new) if order == 'y'
+  game = Game.new(Players::Computer.new(comptoken), Players::Human.new(choice), Board.new) if order == 'n' # works with token on either side
   game.play
 
 when 2
