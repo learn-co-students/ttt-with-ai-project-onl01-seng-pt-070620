@@ -3,7 +3,12 @@ module Players
   class Computer < Player
     def move(board, game = nil)
       if board.empty_cells.count == 9
-        move = 5
+        move = 5 # rand(0..8) will work but then computer vs computer won't always end in a draw
+        # I think that's because our minmax doesn't rate importance of moves, like if ai can win in the next move
+        # guaranteed, it sometimes won't make that move. It'll make a move that sets itself up so it can't lose aka it traps you
+        # instead of just taking the garaunteed win. Maybe this can be fixed through taking depth into account in eval
+        # we can rate the importance of 2 winning moves by tracking which iteration of recursion its on (depth)
+        # TODO: Implement better evaluation of all endstates throughout recursion trees by tracking depth
         return move
       end
       move = minimax(game, board, board.turn_count + 1, token) # call minimax on CURRENT player token
