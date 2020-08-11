@@ -15,6 +15,7 @@ class Game
         @player_1 = player_1
         @player_2 = player_2
         @board = board
+        @board.display
     end
 
     def current_player
@@ -55,6 +56,7 @@ class Game
         @user_input = current_player.move(@board)
         if @board.valid_move?(@user_input)
             @board.update(@user_input, current_player)
+            @board.display
         else
             turn
         end
