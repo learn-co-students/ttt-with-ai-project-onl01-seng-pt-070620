@@ -52,6 +52,20 @@ class Game
 
     def turn
         puts "Please enter a number between 1 and 9"
-        
+        @user_input = current_player.move(@board)
+        if @board.valid_move?(@user_input)
+            @board.update(@user_input, current_player)
+        else
+            turn
+        end
+    end
+
+    def play
+        turn until over?
+        if won?
+            puts "Congratulations #{winner}!"
+        elsif draw?
+            puts "Cat's Game!"
+        end
     end
 end
