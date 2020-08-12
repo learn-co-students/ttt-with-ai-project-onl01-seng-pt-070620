@@ -76,10 +76,36 @@ class Game
       end
     end
   end
+  
+  def self.start 
+    self.menu_options
+  end
+  
+  def self.menu_options
+    puts "Welcome! What type of game would you like to play?"
+    puts "0 ---> Computer vs Computer"
+    puts "1 ---> Player vs Computer"
+    puts "2 ---> Player vs Player"
+    
+    user_input = gets.chomp
+    
+    if user_input == "0"
+      game = Game.new
+      puts "#{game.start_CvC}"
+    elsif user_input == "1"
+      game = Game.new
+      puts "#{game.start_PvC}"
+    elsif user_input == "2"
+      game = Game.new
+      puts "#{game.start_PvP}"
+    else
+      puts "You fool, leave this game!"
+    end
+    
+  end
 
   def cells=(cells)
     Board.cells
-    binding.pry
   end
   
   def start_PvP 
@@ -98,6 +124,31 @@ class Game
     game = Game.new(Players::Computer.new('X'), Players::Computer.new('O'))
     game.board.display
     game.play
+    puts "Play again?"
+    input = gets.strip
+    if input.downcase == 'y'
+      puts "Welcome! What type of game would you like to play?"
+    puts "0 ---> Computer vs Computer"
+    puts "1 ---> Player vs Computer"
+    puts "2 ---> Player vs Player"
+    
+    user_input = gets.chomp
+    
+    if user_input == "0"
+      game = Game.new
+      puts "#{game.start_CvC}"
+    elsif user_input == "1"
+      game = Game.new
+      puts "#{game.start_PvC}"
+    elsif user_input == "2"
+      game = Game.new
+      puts "#{game.start_PvP}"
+    else
+      puts "You fool, leave this game!"
+    end
+    elsif input.downcase == 'n'
+      puts "Thanks for playing!" 
+    end
   end
 end
 
