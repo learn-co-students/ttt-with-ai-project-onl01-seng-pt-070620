@@ -1,3 +1,29 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+require 'colorize'
+def start
+puts 'How many players? (0,1 or 2)'.green
+response = gets.strip!.to_i
+case response
+when 0
+  game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
+  game.play
+when 1
+  puts "Do you want to be X or O?".green
+  choice = gets.chomp.upcase
+  comptoken = 'X' if choice == 'O'
+  comptoken = 'O' if choice == 'X'
+  puts "Do you want to go first? Y/N".green
+  order = gets.chomp.downcase
+  game = Game.new(Players::Human.new(choice), Players::Computer.new(comptoken), Board.new) if order == 'y'
+  game = Game.new(Players::Computer.new(comptoken), Players::Human.new(choice), Board.new) if order == 'n' # works with token on either side
+  game.play
+
+when 2
+  game = Game.new(Players::Human.new("X"), Players::Human.new("O"), Board.new)
+  game.play
+
+end
+end
+start
