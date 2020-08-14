@@ -33,12 +33,16 @@ class Board
     @cells.count{|cell| cell != " " }
   end
   
-  def taken?(position)
-    if position = "X" || "O"
-      true
-    else 
-      false
-    end
+  def taken?(user_input)
+    position(user_input) == "X" || position(user_input) == "O"
+  end
+  
+  def valid_move?(user_input)
+    !taken?(user_input) && user_input.to_i.between?(1,9)
+  end
+  
+  def update(user_input, player)
+    @cells[user_input.to_i - 1] = player.token
   end
   
 end
