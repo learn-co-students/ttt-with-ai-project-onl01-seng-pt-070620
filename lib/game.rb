@@ -13,6 +13,23 @@ class Game
     @player_2 = player_2
   end
   
+  def start 
+    puts "Welcome to TIC TAC TOE! Ready to play?"
+    puts "Press '0' for a Computer vs Computer game, Press '1' for a Computer vs Player game, or Press '2' for a two player game."
+    player_input = gets.strip
+    if player_input == "0"
+      Game.new(Players::Computer.new("X"), Players::Computer.new("O"), board = Board.new).play
+    elsif player_input == "1"
+      puts "If you would like to go first type 'y', if not type 'n'."
+      if gets.strip == "y"
+        Game.new(Players::Human.new("X"), Players::Computer.new("O")), board = Board.new).play 
+      else
+        Game.new(Players::Computer.new("X"), Players::Human.new("O")), board = Board.new).play
+      end
+    else player_input == "2"
+      
+  end
+  
   def current_player
     @board.turn_count.even? ? player_1 : player_2
   end
