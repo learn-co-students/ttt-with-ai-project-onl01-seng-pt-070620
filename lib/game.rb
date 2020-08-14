@@ -27,7 +27,14 @@ class Game
         Game.new(Players::Computer.new("X"), Players::Human.new("O")), board = Board.new).play
       end
     else player_input == "2"
-      
+      Game.new(Players::Human.new("X"), Players::Human.new("O")), board = Board.new).play
+    end
+    puts "Care for another round? 'y' or 'n'?"
+      if gets.strip == "y"
+        start
+      else gets.strip == "n"
+        puts "Thanks for playing!"
+      end
   end
   
   def current_player
