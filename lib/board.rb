@@ -33,8 +33,12 @@ class Board
     @cells.count{|cell| cell != " " }
   end
   
-  def taken?(index)
-    
+  def taken?(position)
+    if position = "X" || "O"
+      true
+    else 
+      false
+    end
   end
   
 end
