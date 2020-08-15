@@ -14,7 +14,6 @@ class Game
   end
   
   def start 
-    puts "Welcome to TIC TAC TOE! Ready to play?"
     puts "Press '0' for a Computer vs Computer game, Press '1' for a Computer vs Player game, or Press '2' for a two player game."
     player_input = gets.strip
     if player_input == "0"
@@ -22,12 +21,12 @@ class Game
     elsif player_input == "1"
       puts "If you would like to go first type 'y', if not type 'n'."
       if gets.strip == "y"
-        Game.new(Players::Human.new("X"), Players::Computer.new("O")), board = Board.new).play 
+        Game.new(Players::Human.new("X"), Players::Computer.new("O"), board = Board.new).play 
       else
-        Game.new(Players::Computer.new("X"), Players::Human.new("O")), board = Board.new).play
+        Game.new(Players::Computer.new("X"), Players::Human.new("O"), board = Board.new).play
       end
     else player_input == "2"
-      Game.new(Players::Human.new("X"), Players::Human.new("O")), board = Board.new).play
+      Game.new(Players::Human.new("X"), Players::Human.new("O"), board = Board.new).play
     end
     puts "Care for another round? 'y' or 'n'?"
       if gets.strip == "y"
