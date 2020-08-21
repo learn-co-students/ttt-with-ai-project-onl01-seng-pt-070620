@@ -37,10 +37,13 @@ class Board
   end
 
   def valid_move?(input)
-    binding.pry
     index = input.to_i-1
-    index.between?(0,8) && !taken?(index)
-    #index.between?(0,8) && !position_taken?(index)
+    index.between?(0,8) && !taken?(input)
+  end
+
+  def update (input, token = "X")
+    index = input.to_i-1
+    @cells[index] = token
   end
 
 
