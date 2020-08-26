@@ -1,64 +1,68 @@
 class Board
     attr_accessor :cells
-
-    board.cells = []
+    # using instance variable to store object board values
+    @cells = []
 
     def reset!
-        @board.cells = Array.new(9, " ")
+        self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " ", ]
     end 
 
     def initialize
-        @board.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
+        self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " ", ]
     end 
 
     def display
-        puts " #{@board.cells[0]} | #{@board.cells[1]} | #{@board.cells[2]} "
+        # using display method to return @cells values per index
+        # tried using puts "@cells..."
+        # tried using puts "cells[]"
+        # tried using return 
+        # pry: @cells[] = nil [] is undefined
+        # how to output board.display? 
+        puts " #{self.cells[0]} | #{self.cells[1]} | #{self.cells[2]} "
         puts "-----------"
-        puts " #{@board.cells[3]} | #{@board.cells[4]} | #{@board.cells[5]} "
+        puts " #{self.cells[3]} | #{self.cells[4]} | #{self.cells[5]} "
         puts "-----------"
-        puts " #{@board.cells[6]} | #{@board.cells[7]} | #{@board.cells[8]} "
+        puts " #{self.cells[6]} | #{self.cells[7]} | #{self.cells[8]} "
     end 
-
-    def move(board, index, user_input)
-        board[index] = user_input
-    end
 
     def position(user_input)
-        input = user_input_to_i - 1
+        self.cells[user_input.to_i - 1]
     end 
 
-    def update
+    def full?
+        self.cells.all? {|i| i != " "}
     end 
 
-    def full?(board)
-        board.all? {|i| i != " "}
-    end 
-
-    def turn_count(board)
+    def turn_count
         turns = 0
-        board.each do |element|
+        self.cells.each do |element|
           if element == "X" || element == "O"
           turns += 1
           end
         end
-      return turns
+      turns
     end 
 
-    def taken?(board, index)
-        if board[index] == " " || board[index] == "" || board[index] == nil
+    def taken?(num)
+        if self.position(num) == " " || self.position(num) == "" || self.position(num) == nil
             return false
           end
-          if board[index] == "X" || board[index] == "O"
+          if self.position(num) == "X" || self.position(num) == "O"
             return true
           end
     end 
 
-    def valid_move?(board, index)
-        if !position_taken?(board, index) && index.between?(0, 8)
+    def valid_move?(num)
+        if !self.taken?(num) && num.to_i.to_s == num #&& num.between?(0, 8)
             return true
           else
-           return false
+           false
           end
     end 
 
+    def update(move, player)
+        self.cells[move.to_i - 1] = player.token
+    end 
+
+    
 end 
