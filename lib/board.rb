@@ -1,5 +1,6 @@
 class Board
-    attr_accessor :cells
+    
+    attr_accessor :cells, :game
     # using instance variable to store object board values
     @cells = []
 
