@@ -30,7 +30,8 @@ class Game
     def won?  
       WIN_COMBINATIONS.detect do |winner|
         @board.cells[winner[0]] == @board.cells[winner[1]] &&
-        @board.cells[winner[1]] == @board.cells[winner[2]]
+        @board.cells[winner[1]] == @board.cells[winner[2]] &&
+        (@board.cells[winner[0]] == "X" ||  @board.cells[winner[0]] == "O") 
       end
     end
 
@@ -38,16 +39,32 @@ class Game
       @board.full? && !won?
     end
     
-    def over
+    def over?
       won? || draw?
     end
     
     def winner
-
+      if winning_combo = won?
+        @winner = @board.cells[winning_combo.first]
+      end
     end
-
-
-
-
-
+    
+    def turn
+     puts "Please enter a number between 1 and 9."
+     input = gets.strip
+     
+      if @board.valid_move?(input)
+        
+    end
+    # def turn
+    #    
+    #     num = gets.strip 
+    #     
+    #       if valid_move?(index)
+    #         move(index, current_player)
+    #         display_board
+    #       else
+    #       turn
+    #     end
+    #   end
 end
