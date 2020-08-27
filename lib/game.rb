@@ -74,24 +74,43 @@ class Game
       end 
 
       def turn
-        
-        if valid_move?
-          player_1
+        puts "Please enter your move: "
+        @user_input = current_player.move(@board)
+        if @board.valid_move?(@user_input)
+          @board.update(@user_input, current_player)
         else
-          puts "invalid"
-          player_1
+          puts "Please enter your move: "
+          @board.display
+          turn
+        end 
+        @board.display
+      end 
+
+      def play
+        #turn
+        # if !over?
+        #   turn
+        # else 
+        #   over?
+        # end 
+        while !self.over?
+          turn
         end 
 
-        player_2
+          if self.winner == "X"
+            puts "Congratulations X!"
+            elsif self.winner == "O"
+            puts "Congratulations O!"
+            else 
+            puts "Cat\'s Game!"
+          end
       end 
 
       def start
-
+        
       end 
       
-      def player
 
-      end 
 
 
 end 
