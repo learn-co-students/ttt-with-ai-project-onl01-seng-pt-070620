@@ -3,7 +3,9 @@ module Players
 
         def move(board)
             if !board.taken?(1)
-                "1"
+                puts "1"
+            elsif !board.taken?(1)
+                puts "2"
             end 
         end 
 
