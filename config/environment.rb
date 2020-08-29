@@ -5,4 +5,4 @@ require_all 'lib'
 require 'pry'
 
 
-game.start
+#game.start

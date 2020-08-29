@@ -87,12 +87,9 @@ class Game
       end 
 
       def play
-        #turn
-        # if !over?
-        #   turn
-        # else 
-        #   over?
-        # end 
+
+        @board.display
+
         while !self.over?
           turn
         end 
@@ -127,18 +124,69 @@ class Game
 
           while input != 'exit' do
 
-            input = gets.strip
-              case input
-              when "help"
+            input = gets.chomp.strip
+              if input == "help"
                 help
-              when "0"
 
-              when "1"
+                # user chooses to play the computer
+              elsif input == "1"
+                puts "Do you want to move first? [y/n]"
+                  if gets.strip == "y"
+                    Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new).play
+                  else # computer takes the first move
+                    Game.new(Players::Computer.new("X"), Players::Human.new("O"), Board.new).play
+                  end
+                # end of the game
+                puts "The game is over. To play another game, enter 'menu'. To quit, enter 'quit'."
+                  input = ''
+                    while input != 'exit' do
+                      input = gets.strip
+                    if input == "menu"
+                      @board.reset!
+                      menu
+                    elsif input == "quit"
+                      exit
+                    end 
+                end 
+                # user chooses to play with anohter human
 
-              when "2"
+              elsif input == "2"
+                puts "Do you want to move first? [y/n]"
+                  if gets.strip == "y"
+                    Game.new(Players::Human.new("X"), Players::Human.new("O"), Board.new).play
+                  else # computer takes the first move
+                    Game.new(Players::Human.new("X"), Players::Human.new("O"), Board.new).play
+                  end
+                # end of the game
+                puts "The game is over. To play another game, enter 'menu'. To quit, enter 'quit'."
+                input = ''
+                  while input != 'exit' do
+                    input = gets.strip
+                  if input == "menu"
+                    @board.reset!
+                    menu
+                  elsif input == "quit"
+                    exit
+                  end 
+                end 
 
-              when "quit"
-                
+              elsif input == "0"
+                # user chooses computer to play with itself
+                    Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new).play
+                # end of the game
+                puts "The game is over. To play another game, enter 'menu'. To quit, enter 'quit'."
+                  input = ''
+                    while input != 'exit' do
+                      input = gets.strip
+                    if input == "menu"
+                      @board.reset!
+                      menu
+                    elsif input == "quit"
+                      exit
+                    end 
+                  end 
+              elsif input == "quit"
+                exit
               else
                 puts "invaid input. Please enter again. "
               end 
@@ -146,7 +194,7 @@ class Game
       end 
       
       def help
-        puts "Please choose a game to play: "
+        puts "Please choose a game mode: "
         puts "type '1' to play with the computer. "
         puts "type '2' to play with another human. "
         puts "type '0' to have the computer plays itself. "
