@@ -107,9 +107,50 @@ class Game
       end 
 
       def start
-        
+        puts ""
+        puts "---------------------------"
+        puts "Welcome to Tic Tac Toe game!"
+        puts "---------------------------"
+        puts ""
+        menu
+      end 
+
+      def menu
+          puts ""
+          puts "--------------------------------------------"
+          puts "How would you like to play?"
+          puts "For a list of options, please enter 'help'."
+          puts "--------------------------------------------"
+          puts ""
+
+          input = ''
+
+          while input != 'exit' do
+
+            input = gets.strip
+              case input
+              when "help"
+                help
+              when "0"
+
+              when "1"
+
+              when "2"
+
+              when "quit"
+                
+              else
+                puts "invaid input. Please enter again. "
+              end 
+          end 
       end 
       
+      def help
+        puts "Please choose a game to play: "
+        puts "type '1' to play with the computer. "
+        puts "type '2' to play with another human. "
+        puts "type '0' to have the computer plays itself. "
+      end 
 
 
 
