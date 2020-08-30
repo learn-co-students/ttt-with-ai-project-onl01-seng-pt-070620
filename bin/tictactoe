@@ -2,5 +2,35 @@
 
 require_relative '../config/environment'
 
+
 puts "Welcome to Tic-Tac-Toe with AI"
 
+puts "What kind of game would you like to play?"
+
+    puts "1. 0-player game"
+    puts "2. 1-player game"
+    puts "3. 2-player game"
+
+    input = ""
+    input = gets.strip
+    
+    while input != "N"
+        case input
+        when "1"
+        Game.new(Players::Computer.new("X"), Players::Computer.new("O")).play
+        
+        when "2"
+        Game.new(Players::Human.new("X"), Players::Computer.new("O")).play
+
+        when "3"
+        Game.new(Players::Human.new("X"), Players::Human.new("O")).play
+       
+        puts "Would you like to play another game? (Y/N?)" 
+          input = ""
+          if gets.strip.upcase == "Y"
+          Game.new(Players::Human.new("X"), Players::Human.new("O")).play
+          "exit"
+        end
+    end
+  end
+    
