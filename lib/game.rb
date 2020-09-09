@@ -1,10 +1,6 @@
 class Game
   
     attr_accessor :board, :player_1, :player_2
-
-    def start
-        
-    end
     
       WIN_COMBINATIONS = [
       [0,1,2],
@@ -22,6 +18,7 @@ class Game
       @player_1 = player_1
       @player_2 = player_2
       @board = board
+      @board.display
     end
     
     def current_player
@@ -57,10 +54,11 @@ class Game
       
       if @board.valid_move?(input)
         @board.update(input, current_player)
+      else puts "Choose a position between 1-9:"
         @board.display
-      else
         turn
       end
+      @board.display
     end
     
     def play
@@ -72,4 +70,4 @@ class Game
           puts "Cat's Game!"
         end
       end
-  end
+    end
