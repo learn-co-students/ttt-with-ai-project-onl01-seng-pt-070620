@@ -44,24 +44,29 @@ class Game
     
     def winner
       if winner_combo = won?
-        winner = @board.cells[winner_combo[0]]
+        # winner = 
+        @board.cells[winner_combo[0]]
       end
     end
     
     def turn
+      # binding.pry
       puts "Choose a position between 1-9:"
       input = current_player.move(@board)
       
       if @board.valid_move?(input)
         @board.update(input, current_player)
+        # binding.pry
       else puts "Choose a position between 1-9:"
         @board.display
         turn
       end
+      # binding.pry
       @board.display
     end
     
     def play
+      # binding.pry
         turn until over?
     
         if won? {|winner| winner == "X" || winner == "O"}
@@ -71,3 +76,5 @@ class Game
         end
       end
     end
+
+   

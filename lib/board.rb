@@ -29,10 +29,12 @@ class Board
   end
   
   def turn_count
+    # binding.pry
     @cells.count {|token| token == "X" || token == "O"}
   end
   
   def taken?(input)
+    # binding.pry
     position(input) == "X" || position(input) == "O"
   end
   
@@ -41,6 +43,7 @@ class Board
   end
   
   def update(input, player)
+    # binding.pry
     @cells[input.to_i - 1] = player.token
   end
     
