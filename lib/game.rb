@@ -63,4 +63,11 @@ class Game
         self.draw? || self.won?
     end
 
+    def winner
+        binding.pry
+        if won?
+
+        end
+    end
+
 end
