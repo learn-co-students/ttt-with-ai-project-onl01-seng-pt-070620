@@ -31,8 +31,6 @@ class Game
     end
 
     def won?
-        # returns true for draw or win
-        # returns false for in progress game
         WIN_COMBINATIONS.detect do |win_combination|
             # binding.pry
             @board.cells[win_combination[0]] == @board.cells[win_combination[1]] && @board.cells[win_combination[1]] == @board.cells[win_combination[2]] && position_taken?(win_combination[0])
@@ -40,22 +38,12 @@ class Game
     end
 
     def draw?
-        if self.full? && !self.won?
+        if @board.full? && !self.won?
             true
         elsif self.won?
             false
-        elsif !self.full? && !self.won?
+        elsif @board.full? && !self.won?
             false
-        end
-    end
-
-    def full?
-        @board.cells.all? do |block|
-            if block == "X" || block == "O"
-                true
-            else
-                false
-            end
         end
     end
 
@@ -64,10 +52,29 @@ class Game
     end
 
     def winner
-        binding.pry
-        if won?
-
+        if win_combo = won?
+            winner = @board.cells[win_combo.first]
+        else
+            nil
         end
     end
+
+    def turn
+        puts "Please enter 1-9:"
+        # user_input = gets.strip
+        # index = @board.position(user_input)
+        # token = self.current_player
+        # binding.pry
+        # if @board.valid_move?(index)
+        #     @board.update(index, token)
+        # else
+        #     turn
+        # end
+        # @board.display
+    end
+
+    # def start
+
+    # end
 
 end
