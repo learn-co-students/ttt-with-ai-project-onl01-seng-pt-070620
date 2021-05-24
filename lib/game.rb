@@ -32,7 +32,6 @@ class Game
 
     def won?
         WIN_COMBINATIONS.detect do |win_combination|
-            # binding.pry
             @board.cells[win_combination[0]] == @board.cells[win_combination[1]] && @board.cells[win_combination[1]] == @board.cells[win_combination[2]] && position_taken?(win_combination[0])
         end
     end
@@ -60,21 +59,19 @@ class Game
     end
 
     def turn
-        puts "Please enter 1-9:"
-        # user_input = gets.strip
-        # index = @board.position(user_input)
-        # token = self.current_player
-        # binding.pry
-        # if @board.valid_move?(index)
-        #     @board.update(index, token)
-        # else
-        #     turn
-        # end
-        # @board.display
+        player = current_player
+        current_move = player.move(@board)
+        if @board.valid_move?(current_move)
+            @board.update(current_move, player)
+            player = current_player
+        else
+            turn
+        end
     end
 
-    # def start
+    def play
+        
 
-    # end
+    end
 
 end
