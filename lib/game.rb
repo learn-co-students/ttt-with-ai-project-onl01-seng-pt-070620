@@ -70,9 +70,23 @@ class Game
     end
 
     def play
-        puts "Please enter a number 1-9:"
-        user_input = gets.strip
+        while !over?
+            turn
+        end
+        if won?
+            puts "Congratulations #{winner}!"
+        elsif draw?
+            puts "Cat's Game!"
+        end
+    end
 
+    def start
+        puts "Please select:"
+        puts "1. 1 Player"
+        puts "2. 2 Player"
+        puts "3. AI"
+        game_selection = gets.strip
+        @board.display
     end
 
 end
