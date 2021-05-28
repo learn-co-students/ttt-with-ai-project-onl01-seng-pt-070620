@@ -37,17 +37,18 @@ class Game
     end
 
     def draw?
-        if @board.full? && !self.won?
+        if @board.full? && !won?
             true
-        elsif self.won?
+        else
             false
-        elsif @board.full? && !self.won?
-            false
+        # elsif @board.full? && !won?
+        #     false
         end
     end
 
     def over?
-        self.draw? || self.won?
+        # binding.pry
+        draw? || won?
     end
 
     def winner
@@ -63,6 +64,7 @@ class Game
         current_move = player.move(@board)
         if @board.valid_move?(current_move)
             @board.update(current_move, player)
+            @board.display
             player = current_player
         else
             turn
@@ -70,7 +72,7 @@ class Game
     end
 
     def play
-        while !over?
+        until over?
             turn
         end
         if won?
@@ -81,12 +83,7 @@ class Game
     end
 
     def start
-        puts "Please select:"
-        puts "1. 1 Player"
-        puts "2. 2 Player"
-        puts "3. AI"
-        game_selection = gets.strip
         @board.display
+        play
     end
-
 end
