@@ -1,3 +1,23 @@
 #!/usr/bin/env ruby
 
 require_relative '../config/environment'
+
+def choose_game(game_selection)
+    if game_selection == "1"
+        game = Game.new(Players::Human.new("X"), Players::Computer.new("O"), Board.new)
+        game.start
+    elsif game_selection == "2"
+        game = Game.new(Players::Human.new("X"), Players::Human.new("O"), Board.new)
+        game.start
+    else
+        game = Game.new(Players::Computer.new("X"), Players::Computer.new("O"), Board.new)
+        game.start
+    end
+end
+
+puts "Please select:"
+puts "1. 1 Player"
+puts "2. 2 Player"
+puts "3. AI"
+game_selection = gets.strip
+choose_game(game_selection)
